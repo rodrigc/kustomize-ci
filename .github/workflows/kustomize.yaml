@@ -15,3 +15,10 @@ jobs:
         with:
           kustomize-version: 5.0.1
       - run: kustomize version
+      - run: bash -c "for kustomization in $(find . -name kustomization.*l);
+                      do
+                          (cd $(dirname $kustomization)
+                           kustomization build
+                          )
+                      done" 
+
